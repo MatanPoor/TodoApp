@@ -1,0 +1,10 @@
+:host{
+    display: grid;
+    grid-template-rows: 1fr 1fr ;
+}
+
+p{
+    color: tomato;
+    margin-left: 10px;
+    font-size: 13px;
+}
