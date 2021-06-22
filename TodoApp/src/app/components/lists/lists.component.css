@@ -1,10 +1,46 @@
-:host{
-    display: grid;
-    grid-template-rows: 1fr 1fr ;
+:host {
+    display:grid;
+    grid-template-rows: auto 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+
 }
 
 p{
+    display: flex;
+    grid-column: 1 / -1;
     color: tomato;
     margin-left: 10px;
     font-size: 13px;
 }
+
+h4{
+    padding: 10px;
+    color: rgb(118, 118, 238);
+}
+
+.icons{
+    display: flex;
+    font-size: 70px;
+    padding-left: 40px;
+    padding-bottom: 60px;
+   
+}
+
+/* .btn{
+    text-align: center;
+    margin: 10px;
+    padding: 20px;
+    background-color: rgb(223, 224, 224);
+    border-radius: 20px;
+    width: 150px;
+} */
+button{
+    height: 160px;
+    width: 160px;
+}
+button :hover{
+    cursor: pointer;
+    color: rgba(71, 43, 235, 0.555);
+}
+
+
