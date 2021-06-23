@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
 import { ListModel } from 'src/app/core/models/list.model';
+import { ListService } from 'src/app/core/services/list.service';
 import { wordsValidator } from 'src/app/core/validations/general-validators';
 
 
@@ -11,10 +12,12 @@ import { wordsValidator } from 'src/app/core/validations/general-validators';
 })
 export class EditListComponent implements OnInit {
   form!: FormGroup;
-  color: string='';
-  // colors: string[] = ['red','green','blue','brown','magenta','navy','black',]
+  colors: string[] = ['red','green','blue','brown','magenta','navy','black']
+  currentColor: string = 'red';
+  
 
-  constructor() { }
+
+  constructor(listService : ListService) { }
 
   ngOnInit(): void {
     this.buildForm()
@@ -23,19 +26,20 @@ export class EditListComponent implements OnInit {
   buildForm() {
     this.form = new FormGroup({
         caption: new FormControl('', [Validators.required]), 
-        description: new FormControl('', [Validators.required, wordsValidator(10,10)]), 
+        description: new FormControl('', [Validators.required, wordsValidator(5,20)]), 
         color: new FormControl('',[Validators.required]),
         icon: new FormControl('',[Validators.required])
     });
-
-    
 
     if(true)
     {
       this.retreiveData()
     }
-
   } 
+
+  changeColor(color: string) {
+    this.currentColor = color;
+  }
 
     retreiveData() {
         let initialList: ListModel = {
@@ -61,9 +65,10 @@ export class EditListComponent implements OnInit {
           ...originalList, 
           ...this.form.value
       }
-
+    
       console.log(this.form.value);
     }
+
     get(fieldName: string){
     return this.form.get(fieldName)
     }

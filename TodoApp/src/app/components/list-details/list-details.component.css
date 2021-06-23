@@ -1,0 +1,37 @@
+
+.icons{
+    font-size: xxx-large;
+    padding-top : 0px;
+}
+
+.pathRoot{
+    display: flex;
+    grid-column: 1 / -1;
+    color: tomato;
+    margin-left: 10px;
+    font-size: 13px;
+}
+.iconAndBtn{
+    display: flex;
+
+}
+.btns{
+  
+    width: 70px;
+    height: 23px;
+}
+.discrptionAndBtn{
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px ;
+
+}
+
+.bt{
+    display: flex;   
+}
+
+.bntAdd{
+    width: 10px;
+}
+

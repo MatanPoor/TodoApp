@@ -1,8 +1,14 @@
 :host {
-    display:grid;
-    grid-template-rows: auto 1fr 1fr;
-    grid-template-columns: repeat(3, 1fr);
+width:35% ; 
+display: flex;
 
+}
+
+.bntWarper{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    margin: 20px auto 60px;
 }
 
 p{
@@ -37,6 +43,9 @@ h4{
 button{
     height: 160px;
     width: 160px;
+    margin: 6px;
+    border-radius: 20px;
+    border: 2px solid #e5e3e3;
 }
 button :hover{
     cursor: pointer;

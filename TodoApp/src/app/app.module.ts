@@ -14,7 +14,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { EditListComponent } from './components/edit-list/edit-list.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ErrorsPreseneterComponent } from './components/errors-preseneter/errors-preseneter.component';
+import { ErrorsPresenterComponent } from './components/errors-presenter/errors-presenter.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { ListDetailsComponent } from './components/list-details/list-details.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ErrorsPreseneterComponent } from './components/errors-preseneter/errors
     InfoComponent,
     NavBarComponent,
     EditListComponent,
-    ErrorsPreseneterComponent
+    ErrorsPresenterComponent,
+    ErrorPageComponent,
+    ListDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -5,9 +5,18 @@
         <h4>20/06/2021</h4>
     </div>
     <div class="buttons">
-        <button class="buttonNewList">Create new list</button>
-        <button class="buttonAllLists">View all lists</button>
-        <button class="buttonAllItems">View all items</button>
+        <button class="buttonNewList"
+        mat-icon-button
+        routerLink="/lists/-1/edit"
+        >Create new list</button>
+        <button class="buttonAllLists"
+        mat-icon-button
+        routerLink="/lists"
+        >View all lists</button>
+        <button class="buttonAllItems"
+        mat-icon-button
+        routerLink="/items"
+        >View all items</button>
     </div>
 </div>
 
