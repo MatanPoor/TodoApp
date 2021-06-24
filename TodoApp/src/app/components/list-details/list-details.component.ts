@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ListDetailsComponent implements OnInit {
 
   items: string[] = ['milk','bread','fish','beef','chitus'];
-
+  
   constructor() { }
 
   ngOnInit(): void {

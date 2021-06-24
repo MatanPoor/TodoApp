@@ -13,12 +13,14 @@
 }
 .iconAndBtn{
     display: flex;
-
 }
 .btns{
-  
     width: 70px;
     height: 23px;
+    margin: auto 3px;
+    background-color: rgb(209,233,243);
+    border: 1px solid black;
+    border-radius: 3px;
 }
 .discrptionAndBtn{
     display: flex;
@@ -32,6 +34,21 @@
 }
 
 .bntAdd{
-    width: 10px;
+    width: 15px;
+    margin-left: 5px;
+    background-color: rgb(209,233,243);
+    border: 1px solid black;
 }
-
+.inputArea{
+    width: 250px;
+}
+.inputAndBtnArea{
+    display: flex;
+}
+.checkBox{
+    display: flex;
+    margin: 5px auto auto 5px;
+}
+.list-detailsWarper{
+    margin-left: 20px;
+}

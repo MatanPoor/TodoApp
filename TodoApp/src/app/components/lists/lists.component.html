@@ -10,14 +10,15 @@
           <h1>Add New</h1>
         </button>
       </div>
-      <div class="btn">
-        <button
+     
+      <div *ngFor="let b of buttonList" class="btn">
+        <button 
           style="color: rgb(243, 147, 163)"
           mat-icon-button
-          routerLink="/list-details">
+          routerLink="/list-details/{{b.id}}">
           <mat-icon class="icons"
-          >shopping_cart</mat-icon>
-          <h1>Shopping</h1>
+          >{{b.icon}}</mat-icon>
+          <h1>{{b.caption}}</h1>
         </button>
       </div>
 

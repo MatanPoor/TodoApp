@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
 import { ListModel } from 'src/app/core/models/list.model';
-import { ListService } from 'src/app/core/services/list.service';
+import { DataService } from 'src/app/core/services/data.service';
 import { wordsValidator } from 'src/app/core/validations/general-validators';
 
 
@@ -17,7 +17,7 @@ export class EditListComponent implements OnInit {
   
 
 
-  constructor(listService : ListService) { }
+  constructor(dataService : DataService) { }
 
   ngOnInit(): void {
     this.buildForm()

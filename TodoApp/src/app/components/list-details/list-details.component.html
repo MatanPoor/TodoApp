@@ -1,28 +1,34 @@
 
-<div class= "path">
-<p class="pathRoot">list > list-details</p>
-</div>
-<div class= "iconAndBtn">
-    <div class="icontArea"><mat-icon class="icons">shopping_cart</mat-icon></div>
-
-    <div class="discrptionAndBtn">
-        <h4 class="iconPregrath"> just let me be kus emek</h4>
-        <div class="bt">
-            <button class="btns">New List...</button>
-            <button class="btns">Edit...</button>
-            <button class="btns">Delete</button>
-        </div>
-    </div>  
-</div>
-
-<div *ngFor="let i of items">
-    <div class="checkbox">
-        <input type="checkbox" />
-        <label>{{i}}</label>
+    <div class= "path">
+    <p class="pathRoot">list > list-details</p>
     </div>
-</div>
+<div class="list-detailsWarper">
+    <div class= "iconAndBtn">
+        <div class="icontArea"><mat-icon class="icons">shopping_cart</mat-icon></div>
 
-<div>
-    <input #textValue type="text"/>
-    <button  (click)="addItem(textValue.value)"  class= 'bntAdd'> + </button>
+        <div class="discrptionAndBtn">
+            <h4 class="iconPregrath"> just let me be kus emek</h4>
+            <div class="bt">
+                <button class="btns" 
+                mat-icon-button
+                routerLink="/lists/-1/edit">New List...</button>
+                <button class="btns" 
+                mat-icon-button
+                routerLink="/lists/-1/edit">Edit...</button>
+                <button class="btns" >Delete</button>
+            </div>
+        </div>  
+    </div>
+
+        <div *ngFor="let i of items">
+            <div class="checkBox">
+                <input type="checkbox" />
+                <label>{{i}}</label>
+            </div>
+        </div>
+
+    <div class="inputAndBtnArea" >
+        <input class="inputArea" #textValue type="text"/>
+        <button  (click)="addItem(textValue.value)"  class= 'bntAdd'> + </button>
+    </div>
 </div>
