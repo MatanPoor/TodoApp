@@ -11,11 +11,11 @@
         </button>
       </div>
      
-      <div *ngFor="let b of buttonList" class="btn">
+      <div *ngFor="let b of lists$|async" class="btn">
         <button 
-          style="color: rgb(243, 147, 163)"
+          style.color = {{b.color}}
           mat-icon-button
-          routerLink="/list-details/{{b.id}}">
+          routerLink="/list-details/{{b.id}}"> 
           <mat-icon class="icons"
           >{{b.icon}}</mat-icon>
           <h1>{{b.caption}}</h1>

@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorsPresenterComponent } from './components/errors-presenter/errors-presenter.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 import { ListDetailsComponent } from './components/list-details/list-details.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,8 +43,7 @@ import { ListDetailsComponent } from './components/list-details/list-details.com
     MatSelectModule,
     MatInputModule,
     MatFormFieldModule,
-  
- 
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

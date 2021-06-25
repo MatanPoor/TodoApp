@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { ListModel } from 'src/app/core/models/list.model';
 import { DataService } from 'src/app/core/services/data.service';
 import { wordsValidator } from 'src/app/core/validations/general-validators';
@@ -14,12 +16,17 @@ export class EditListComponent implements OnInit {
   form!: FormGroup;
   colors: string[] = ['red','green','blue','brown','magenta','navy','black']
   currentColor: string = 'red';
-  
+  initialList: ListModel = {"id" : 0,"caption":''  ,"description" : ''  ,"color" : '', "icon" : '' }
 
 
-  constructor(dataService : DataService) { }
+  constructor(private dataService : DataService , private activatedRouter:ActivatedRoute , private router:Router) { }
 
-  ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
+    let id = Number(this.activatedRouter.snapshot.params['id']);
+    let id$ = this.activatedRouter.params.pipe(map(prms => Number(prms['id'])));
+    if(id !== -1){
+      this.initialList = await this.dataService.getListById(id)
+    }
     this.buildForm()
   }
 
@@ -30,26 +37,11 @@ export class EditListComponent implements OnInit {
         color: new FormControl('',[Validators.required]),
         icon: new FormControl('',[Validators.required])
     });
-
-    if(true)
-    {
-      this.retreiveData()
-    }
+    this.form.reset(this.initialList);
   } 
 
-  changeColor(color: string) {
-    this.currentColor = color;
-  }
-
-    retreiveData() {
-        let initialList: ListModel = {
-          caption: 'Things to Buy', 
-          description: 'A friend from another world', 
-          color: 'red',
-          icon: 'something'
-      }
-
-          this.form.reset(initialList);
+    changeColor(color: string) {
+      this.currentColor = color;
     }
 
     onGo() {

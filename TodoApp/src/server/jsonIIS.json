@@ -3,10 +3,9 @@
         {
             "id": 1,
             "caption": "ma sheba",
-            "description" : "stam mashu lirot",
+            "description" : "shopping",
             "color" : "red",
             "icon" : "home"
-
         },
         {
             "id": 2,
@@ -14,7 +13,6 @@
             "description" : "stam mashu lirot2",
             "color" : "green",
             "icon" : "home"
-
         },
         {
             "id": 3,
@@ -22,25 +20,30 @@
             "description" : "stam mashu lirot 3",
             "color" : "blue",
             "icon" : "home"
-
         }
 
     ],
    "items": [
         {
             "id":1,
-            "caption" : "ma sheba",
+            "caption" : "milk",
             "listId" :1,
-            "isCompleted" : true
+            "isCompleted" : false
         },
         {
             "id":2,
-            "caption" : "ma sheba 2",
-            "listId" :2,
-            "isCompleted" : true
+            "caption" : "sugar",
+            "listId" :1,
+            "isCompleted" : false
         },
         {
             "id":3,
+            "caption" : "ma sheba 2",
+            "listId" :2,
+            "isCompleted" : false
+        },
+        {
+            "id":4,
             "caption" : "ma sheba 3",
             "listId" :3,
             "isCompleted" : true

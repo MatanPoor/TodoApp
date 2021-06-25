@@ -12,18 +12,18 @@
                 <button class="btns" 
                 mat-icon-button
                 routerLink="/lists/-1/edit">New List...</button>
-                <button class="btns" 
+                <button *ngFor="let i of lists$|async"class="btns" 
                 mat-icon-button
-                routerLink="/lists/-1/edit">Edit...</button>
+                routerLink="/lists/{{i.id}}/edit">Edit...</button>
                 <button class="btns" >Delete</button>
             </div>
         </div>  
     </div>
 
-        <div *ngFor="let i of items">
-            <div class="checkBox">
+        <div >
+            <div *ngFor="let i of items$|async" class="checkBox">
                 <input type="checkbox" />
-                <label>{{i}}</label>
+                <label>{{i.listId}}</label>
             </div>
         </div>
 
