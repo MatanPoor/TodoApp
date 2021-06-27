@@ -4,26 +4,34 @@
     </div>
 <div class="list-detailsWarper">
     <div class= "iconAndBtn">
-        <div class="icontArea"><mat-icon class="icons">shopping_cart</mat-icon></div>
+        <div class="icontArea"><mat-icon class="icons">{{currentList.icon}}</mat-icon></div>
 
         <div class="discrptionAndBtn">
-            <h4 class="iconPregrath"> just let me be kus emek</h4>
+            <h4 class="iconPregrath"> {{currentList.description}}</h4>
             <div class="bt">
-                <button class="btns" 
-                mat-icon-button
-                routerLink="/lists/-1/edit">New List...</button>
-                <button *ngFor="let i of lists$|async"class="btns" 
-                mat-icon-button
-                routerLink="/lists/{{i.id}}/edit">Edit...</button>
-                <button class="btns" >Delete</button>
+                <ng-container *ngIf="!isShowing">
+                    <button class="btns" 
+                    mat-icon-button
+                    routerLink="/lists/-1/edit">New List...</button>
+                    <button class="btns" 
+                    mat-icon-button
+                    routerLink="/lists/{{currentList.id}}/edit">Edit...</button>
+                    <button class="btns"  (click)="confimrdDelete()" >Delete</button>
+                </ng-container>
+                <ng-container *ngIf="isShowing" >
+                    <p>Are you sure you want to delete this list?</p>
+                <button class="btns" (click)="deleteList(currentList)" >Delete</button>
+                <button class="btns" (click)="cancelDelete()" >Cancel</button>
+                </ng-container>
+             
             </div>
         </div>  
     </div>
 
-        <div >
+        <div>
             <div *ngFor="let i of items$|async" class="checkBox">
-                <input type="checkbox" />
-                <label>{{i.listId}}</label>
+                <input  [checked]= i.isCompleted type="checkbox" (change)="markAsDone(i)"/>
+                <label  class="complete{{i.isCompleted}}" >{{i.caption}}</label>
             </div>
         </div>
 

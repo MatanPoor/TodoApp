@@ -1,5 +1,5 @@
 export interface ItemModel{
-    id?:number,
+    id:number,
     caption : string,
     listId:number,
     isCompleted:boolean

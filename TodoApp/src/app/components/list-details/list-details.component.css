@@ -52,3 +52,11 @@
 .list-detailsWarper{
     margin-left: 20px;
 }
+
+.completetrue{
+    text-decoration: line-through brown;
+}
+
+.completefalse{
+    
+}

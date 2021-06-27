@@ -1,21 +1,21 @@
 
 <div class="formWarper"  >
-    <div class="form" [formGroup]="form" >
+    <div class="form" *ngIf="form" [formGroup]="form" (ngSubmit)="form.valid">
         <div class="form-field" *ngIf="get('caption') as field">
             <label>caption</label>
-            <input type="text" formControlName="caption">
+            <input #caption type="text" formControlName="caption">
             <app-errors-presenter [errors]="field.errors"></app-errors-presenter>
         </div>
 
         <div class="form-field" *ngIf="get('description') as field">
             <label>Descrption</label>
-            <textarea rows="4" formControlName="description"></textarea>
+            <textarea #description rows="4" formControlName="description"></textarea>
             <app-errors-presenter [errors]="field.errors"></app-errors-presenter>
         </div>
 
         <div class="form-field" *ngIf="get('color') as field">
             <label>color</label>
-            <select id="ctrlColor" formControlName="color" #selectedColor (change)="changeColor(selectedColor.value)" [style.color]="currentColor">
+            <select #color id="ctrlColor" formControlName="color" #selectedColor (change)="changeColor(selectedColor.value)" [style.color]="currentColor">
                 <option *ngFor="let color of colors" [style.color]="color" [selected]="currentColor===color">{{color}}</option>
             </select>
             <app-errors-presenter [errors]="field.errors"></app-errors-presenter>
@@ -24,7 +24,7 @@
         <div class="form-field"  *ngIf="get('icon') as field">
             <mat-form-field>
                 <label>icon</label>
-                <mat-select formControlName="icon">
+                <mat-select #icon formControlName="icon">
                     <mat-option value="home"><mat-icon>home</mat-icon></mat-option>
                     <mat-option value="build"><mat-icon>build</mat-icon></mat-option>
                 </mat-select>
@@ -32,6 +32,6 @@
             </mat-form-field>
         </div>
     </div>
-    <button [disabled]="form.invalid" type="submit" (click)="onGo()">Save List</button>
+    <button [disabled]="form.invalid"  type="submit" (click)="onGo()">Save List</button>
     
 </div>

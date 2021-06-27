@@ -1,3 +1,6 @@
-<p>items works!</p>
-
-
+<div>
+    <div *ngFor="let i of items$|async" class="checkBox">
+        <input  [checked]= i.isCompleted type="checkbox" (change)="markAsDone(i)"/>
+        <label  class="complete{{i.isCompleted}}" >{{i.caption}}</label>
+    </div>
+</div>
