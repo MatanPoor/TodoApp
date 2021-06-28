@@ -1,0 +1,23 @@
+.pathRoot{
+    display: flex;
+    grid-column: 1 / -1;
+    color: tomato;
+    margin-left: 10px;
+    font-size: 13px;
+}
+.checkboxWarper{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+  
+}
+.checkBox{
+    display: flex;
+    margin: 5px auto auto 5px;
+}
+.label{
+    padding-left: 6px;
+}
+.checkboxBtn{
+    margin-top: 6px;
+}

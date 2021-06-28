@@ -1,6 +1,9 @@
-<div>
+<p class="pathRoot">Active Items</p>
+<div class="checkboxWarper">
+ 
     <div *ngFor="let i of items$|async" class="checkBox">
-        <input  [checked]= i.isCompleted type="checkbox" (change)="markAsDone(i)"/>
-        <label  class="complete{{i.isCompleted}}" >{{i.caption}}</label>
+        
+        <input  class="checkboxBtn" [checked]= i.isCompleted type="checkbox" (change)="markAsDone(i)"/>
+        <label  class="label" >{{i.caption}}</label>
     </div>
 </div>

@@ -14,8 +14,10 @@ import { wordsValidator } from 'src/app/core/validations/general-validators';
 })
 export class EditListComponent implements OnInit {
   form!: FormGroup;
-  colors: string[] = ['red','green','blue','brown','magenta','navy','black']
-  currentColor: string = 'red';
+  colors: string[] = ['','red','green','blue','brown','magenta','navy','black']
+  icons: string [] = ['home','call','build','access_time','computer']
+  currentColor: string = '';
+  currentIcon: string = '';
   initialList: ListModel = {"id" : 0,"caption":''  ,"description" : ''  ,"color" : '', "icon" : '' }
 
 
@@ -23,10 +25,9 @@ export class EditListComponent implements OnInit {
 
     async ngOnInit(): Promise<void> {
       let id = Number(this.activatedRouter.snapshot.params['id']);
-      // let id$ = this.activatedRouter.params.pipe(map(prms => Number(prms['id'])));
+
       if(id !== -1){
         this.initialList = await this.dataService.getListById(id)
-        // console.log(this.initialList)
       }
       this.buildForm()
     }
@@ -44,6 +45,11 @@ export class EditListComponent implements OnInit {
     changeColor(color: string) {
       this.currentColor = color;
     }
+
+    changeIcon(icon: string) {
+      this.currentIcon = icon;
+    }
+    
 
      async onGo() 
      {

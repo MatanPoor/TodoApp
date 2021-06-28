@@ -41,9 +41,11 @@
 }
 .inputArea{
     width: 250px;
+    margin-left: 10px;
 }
 .inputAndBtnArea{
     display: flex;
+    margin-top: 10px;
 }
 .checkBox{
     display: flex;
@@ -55,8 +57,10 @@
 
 .completetrue{
     text-decoration: line-through brown;
+    padding-left: 6px;
+}
+.completefalse{
+    padding-left: 6px;
 }
 
-.completefalse{
-    
-}
+

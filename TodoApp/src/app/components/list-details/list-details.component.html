@@ -4,19 +4,19 @@
     </div>
 <div class="list-detailsWarper">
     <div class= "iconAndBtn">
-        <div class="icontArea"><mat-icon class="icons">{{currentList.icon}}</mat-icon></div>
+        <div class="iconArea"><mat-icon [style.color]="currentList.color" class="icons">{{currentList.icon}}</mat-icon></div>
 
         <div class="discrptionAndBtn">
             <h4 class="iconPregrath"> {{currentList.description}}</h4>
             <div class="bt">
                 <ng-container *ngIf="!isShowing">
-                    <button class="btns" 
+                    <button  class="btns" 
                     mat-icon-button
                     routerLink="/lists/-1/edit">New List...</button>
-                    <button class="btns" 
+                    <button  class="btns" 
                     mat-icon-button
                     routerLink="/lists/{{currentList.id}}/edit">Edit...</button>
-                    <button class="btns"  (click)="confimrdDelete()" >Delete</button>
+                    <button  class="btns"  (click)="confimrdDelete()" >Delete</button>
                 </ng-container>
                 <ng-container *ngIf="isShowing" >
                     <p>Are you sure you want to delete this list?</p>
@@ -30,13 +30,13 @@
 
         <div>
             <div *ngFor="let i of items$|async" class="checkBox">
-                <input  [checked]= i.isCompleted type="checkbox" (change)="markAsDone(i)"/>
+                <input class= checkBox [checked]= i.isCompleted type="checkbox" (change)="markAsDone(i)"/>
                 <label  class="complete{{i.isCompleted}}" >{{i.caption}}</label>
             </div>
         </div>
 
-    <div class="inputAndBtnArea" >
-        <input class="inputArea" #textValue type="text"/>
-        <button  (click)="addItem(textValue.value)"  class= 'bntAdd'> + </button>
-    </div>
+            <div class="inputAndBtnArea" >
+                <input class="inputArea" #textValue type="text" (input)="captionWord = textValue.value"/>
+                <button (click)="addItem(textValue.value)" [disabled]="captionWord.length === 0" class= 'bntAdd'> + </button>
+            </div>
 </div>

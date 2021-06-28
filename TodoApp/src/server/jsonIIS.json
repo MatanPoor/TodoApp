@@ -1,37 +1,25 @@
 {
   "lists": [
     {
-      "id": 1,
-      "caption": "ma sheba",
-      "description": "shopping",
+      "id": 3,
+      "caption": "fasfadfas",
+      "description": "asdasd asdasdas ",
       "color": "red",
-      "icon": "home"
+      "icon": "call"
     },
     {
-      "id": 2,
-      "caption": "ma sheba 2",
-      "description": "bla bla bla bla",
-      "color": "green",
-      "icon": "build"
+      "id": 4,
+      "caption": "gfhfg",
+      "description": "gfhgfh fghfgh",
+      "color": "magenta",
+      "icon": "computer"
     }
   ],
   "items": [
     {
       "id": 1,
-      "caption": "milk",
-      "listId": 1,
-      "isCompleted": true
-    },
-    {
-      "id": 2,
-      "caption": "sugar",
-      "listId": 1,
-      "isCompleted": true
-    },
-    {
-      "id": 3,
-      "caption": "agg ",
-      "listId": 1,
+      "caption": "hgfgh",
+      "listId": 3,
       "isCompleted": false
     }
   ]

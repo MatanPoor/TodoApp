@@ -12,12 +12,14 @@ import { ItemsComponent } from '../items/items.component';
   styleUrls: ['./list-details.component.css']
 })
 export class ListDetailsComponent implements OnInit {
+  captionWord = '';
   lists$!: Promise<ListModel[]>;
   items$!: Promise<ItemModel[]>;
   currentListItems: string[] = [];
   currentList: ListModel = { "id": 0, "caption": '', "description": '', "color": '', "icon": '' };
   isShowing:boolean = false;
   listId = Number(this.activatedRouter.snapshot.params['id']);
+ 
 
   constructor(private dataService: DataService, private activatedRouter: ActivatedRoute, private router: Router) { }
 
@@ -74,8 +76,10 @@ export class ListDetailsComponent implements OnInit {
       isCompleted : false
     }
     await this.dataService.postItem(newitem);
-    this.items$ = this.dataService.getItems();
+    let listId = Number(this.activatedRouter.snapshot.params['id']);
+    this.items$ = this.dataService.getItemsById(listId);
   }
+ 
 
  async markAsDone(item : ItemModel){
    item.isCompleted = true;
