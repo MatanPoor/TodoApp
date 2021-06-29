@@ -28,6 +28,7 @@ export class EditListComponent implements OnInit {
 
       if(id !== -1){
         this.initialList = await this.dataService.getListById(id)
+        this.currentColor = this.initialList.color;
       }
       this.buildForm()
     }
@@ -35,7 +36,7 @@ export class EditListComponent implements OnInit {
   buildForm() {
     this.form = new FormGroup({
         caption: new FormControl('', [Validators.required]), 
-        description: new FormControl('', [Validators.required, wordsValidator(2,10)]), 
+        description: new FormControl('', [Validators.required, wordsValidator(10,30)]), 
         color: new FormControl('',[Validators.required]),
         icon: new FormControl('',[Validators.required])
     });
@@ -67,6 +68,8 @@ export class EditListComponent implements OnInit {
           color : this.form.value.color,
           icon : this.form.value.icon
         }
+
+        
 
         //new list==> -1
         if(listId === -1)
