@@ -50,8 +50,6 @@ export class DataService {
     }).toPromise();
   }
 
-
-
   putList(list:ListModel,listId:number ): Promise<ListModel>{
     let url = `${this._url}/lists`;
      return this.httpClient.put<ListModel>(url, list, {

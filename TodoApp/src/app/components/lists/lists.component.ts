@@ -10,7 +10,6 @@ import { DataService } from 'src/app/core/services/data.service';
 export class ListsComponent implements OnInit {
   lists$!:Promise<ListModel[]>;
   
-  
  constructor(private dataService:DataService) { }
 
   ngOnInit(): void {

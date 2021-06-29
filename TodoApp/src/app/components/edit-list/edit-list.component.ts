@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl,Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { ListModel } from 'src/app/core/models/list.model';
 import { DataService } from 'src/app/core/services/data.service';
 import { wordsValidator } from 'src/app/core/validations/general-validators';
@@ -69,12 +68,10 @@ export class EditListComponent implements OnInit {
           icon : this.form.value.icon
         }
 
-        
-
         //new list==> -1
         if(listId === -1)
         {
-          await this.dataService.postList(newList).then(data=>console.log(data));
+          await this.dataService.postList(newList);
         }
         // exsist list==> 1
         if(listId !== -1){
@@ -83,7 +80,6 @@ export class EditListComponent implements OnInit {
         }
         this.router.navigate(["lists"]);
       })
-
     }
 
     get(fieldName: string){

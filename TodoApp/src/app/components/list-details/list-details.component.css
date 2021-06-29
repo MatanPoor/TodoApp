@@ -43,7 +43,7 @@
     width: 250px;
     margin-left: 10px;
 }
-.inputAndBtnArea{
+.form-field{
     display: flex;
     margin-top: 10px;
 }
@@ -61,6 +61,22 @@
 }
 .completefalse{
     padding-left: 6px;
+}
+.btnDelete{
+    width: 90px;
+    height: 23px;
+    margin: 0px 8px;
+    background-color: rgb(245, 172, 172);
+    border: 1px solid black;
+    border-radius: 3px;
+}
+.btnCancel{
+    width: 90px;
+    height: 23px;
+    margin: 0px 8px;
+    background-color: rgb(172, 245, 176);
+    border: 1px solid black;
+    border-radius: 3px;
 }
 
 

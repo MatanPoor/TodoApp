@@ -7,7 +7,7 @@
         <div class="iconArea"><mat-icon [style.color]="currentList.color" class="icons"> {{currentList.icon}}</mat-icon></div>
 
         <div class="discrptionAndBtn">
-            <h4 class="iconPregrath"> {{currentList.description}}</h4>
+            <h4 class="iconPregrath" [style.color]="currentList.color"> {{currentList.description}}</h4>
             <div class="bt">
                 <ng-container *ngIf="!isShowing">
                     <button  class="btns" 
@@ -20,8 +20,8 @@
                 </ng-container>
                 <ng-container *ngIf="isShowing" >
                     <p>Are you sure you want to delete this list?</p>
-                <button class="btns" (click)="deleteList(currentList)" >Delete</button>
-                <button class="btns" (click)="cancelDelete()" >Cancel</button>
+                <button class="btnDelete" (click)="deleteList(currentList)" >Yes I am sure</button>
+                <button class="btnCancel" (click)="cancelDelete()" >Cancel</button>
                 </ng-container>
              
             </div>
@@ -31,12 +31,15 @@
         <div>
             <div *ngFor="let i of items$|async" class="checkBox">
                 <input class= checkBox [checked]= i.isCompleted type="checkbox" (change)="markAsDone(i)"/>
-                <label  class="complete{{i.isCompleted}}" >{{i.caption}}</label>
+                <label  class="complete{{i.isCompleted}}"  >{{i.caption}}</label>
             </div>
         </div>
 
-            <div class="inputAndBtnArea" >
-                <input class="inputArea" #textValue type="text" (input)="captionWord = textValue.value"/>
-                <button (click)="addItem(textValue.value)" [disabled]="captionWord.length === 0" class= 'bntAdd'> + </button>
+         <div class="form" *ngIf="formGroupItem" [formGroup]="formGroupItem" (ngSubmit)="formGroupItem.valid">
+            <div class="form-field" *ngIf="get('caption') as field" > 
+                <input class="inputArea" type="text" formControlName="caption">
+                <button class= 'bntAdd' [disabled]="formGroupItem.invalid" (click)="addItem()">+</button>
             </div>
+            <app-errors-presenter *ngIf="get('caption')" [errors]="get('caption')?.errors"></app-errors-presenter>
+        </div>
 </div>

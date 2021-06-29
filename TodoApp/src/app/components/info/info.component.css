@@ -12,5 +12,18 @@ div{
     align-items: center; 
 }
 
+.material-icons{
+    color: rgb(27,129,163);
+    margin-bottom: 5px;
+}
+p{
+    color: rgb(27,129,163);
+    font-size: 13px;
+}
+h1{
+    margin: auto;
+    padding: 0px;
+}
+
 
 

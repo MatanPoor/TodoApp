@@ -1,9 +1,11 @@
 <p class="pathRoot">Active Items</p>
 <div class="checkboxWarper">
- 
+    
     <div *ngFor="let i of items$|async" class="checkBox">
-        
         <input  class="checkboxBtn" [checked]= i.isCompleted type="checkbox" (change)="markAsDone(i)"/>
         <label  class="label" >{{i.caption}}</label>
     </div>
+    <label *ngIf="isItemsEmpty" class="label" >You do not have any
+        uncompleted todo items</label>
+   
 </div>

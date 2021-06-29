@@ -1,41 +1,39 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl,FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { ItemModel } from 'src/app/core/models/item.model';
 import { ListModel } from 'src/app/core/models/list.model';
 import { DataService } from 'src/app/core/services/data.service';
-import { ItemsComponent } from '../items/items.component';
+import { wordsValidator } from 'src/app/core/validations/general-validators';
 
 @Component({
   selector: 'app-list-details',
   templateUrl: './list-details.component.html',
   styleUrls: ['./list-details.component.css']
 })
+
 export class ListDetailsComponent implements OnInit {
-  captionWord = '';
+  formGroupItem!: FormGroup;
   lists$!: Promise<ListModel>;
   items$!: Promise<ItemModel[]>;
   currentListItems: string[] = [];
   currentList: ListModel = { "id": 0, "caption": '', "description": '', "color": '', "icon": '' };
+  initialItem: string = "";
   isShowing:boolean = false;
   listId = Number(this.activatedRouter.snapshot.params['id']);
- 
 
-  constructor(private dataService: DataService, private activatedRouter: ActivatedRoute, private router: Router) { }
-
+  constructor(private dataService: DataService, private activatedRouter: ActivatedRoute, private router: Router,private formBuilder: FormBuilder) { }
 
   async ngOnInit(): Promise<void> {
     this.activatedRouter.paramMap.subscribe((params) => {
       const listId = params.get('id')!
       if (listId) {
-        //this.lists$ = this.dataService.getListById(Number(listId));
           this.dataService.getListById(Number(listId)).then((data) => {
           this.currentList =  data;
-          console.log(this.currentList)
         })
       }
     })
-
+    
     let listId = Number(this.activatedRouter.snapshot.params['id']);
     this.items$ = this.dataService.getItemsById(listId);
     this.items$.then(data => data.forEach(element => {
@@ -43,21 +41,20 @@ export class ListDetailsComponent implements OnInit {
         this.currentListItems.push(element.caption)
       }
     }))
-
-    // let listId$ = this.activatedRouter.params.pipe(map(prms => Number(prms['listId'])));
-    // console.log("listId$" + listId$);
-    // console.log("if (listId !== -1)" + listId);
-    // if(listId !== -1  ){
-    //   this.initialItem = await this.dataService.getItems();
-    // console.log(this.initialItem);
-    // this.initialList = await this.dataService.getListById(listId);
+    this.buildForm();
+    this.formGroupItem.reset();
 
   }
+  buildForm() {
+    this.formGroupItem = new FormGroup({
+      caption: new FormControl('', [Validators.required, wordsValidator(3, 10)])
+    });
+  } 
 
   async deleteList(listmodel: ListModel) {
     let listId = Number(this.activatedRouter.snapshot.params['id']);
     await this.dataService.deleteList(listmodel , listId);
-    this.router.navigate(["lists"]);
+    this.router.navigate(["home"]);
   }
 
   confimrdDelete(): void {
@@ -68,13 +65,14 @@ export class ListDetailsComponent implements OnInit {
     this.isShowing = false;
   }
 
-  async addItem(value : string){
+  async addItem(){
     let newitem :ItemModel={
       id: 0,
-      caption : value,
+      caption : this.formGroupItem.value.caption,
       listId : this.listId,
       isCompleted : false
     }
+    this.formGroupItem.reset();
     await this.dataService.postItem(newitem);
     let listId = Number(this.activatedRouter.snapshot.params['id']);
     this.items$ = this.dataService.getItemsById(listId);
@@ -87,7 +85,10 @@ export class ListDetailsComponent implements OnInit {
    this.items$ = this.dataService.getItemsById(item.listId);
   }
 
-  // this.dataService.getItemsById(listId)
+  get(fieldName: string){
+    return this.formGroupItem.get(fieldName)
+  }
+
 }
 
 
