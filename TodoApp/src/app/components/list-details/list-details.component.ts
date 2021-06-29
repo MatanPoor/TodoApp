@@ -13,7 +13,7 @@ import { ItemsComponent } from '../items/items.component';
 })
 export class ListDetailsComponent implements OnInit {
   captionWord = '';
-  lists$!: Promise<ListModel[]>;
+  lists$!: Promise<ListModel>;
   items$!: Promise<ItemModel[]>;
   currentListItems: string[] = [];
   currentList: ListModel = { "id": 0, "caption": '', "description": '', "color": '', "icon": '' };
@@ -28,15 +28,15 @@ export class ListDetailsComponent implements OnInit {
     this.activatedRouter.paramMap.subscribe((params) => {
       const listId = params.get('id')!
       if (listId) {
-        this.dataService.getListById(Number(listId)).then((data) => {
-          this.currentList = data;
-          // console.log(this.currentList)
+        //this.lists$ = this.dataService.getListById(Number(listId));
+          this.dataService.getListById(Number(listId)).then((data) => {
+          this.currentList =  data;
+          console.log(this.currentList)
         })
       }
     })
 
     let listId = Number(this.activatedRouter.snapshot.params['id']);
-
     this.items$ = this.dataService.getItemsById(listId);
     this.items$.then(data => data.forEach(element => {
       if (element.listId === this.listId) {
@@ -81,10 +81,10 @@ export class ListDetailsComponent implements OnInit {
   }
  
 
- async markAsDone(item : ItemModel){
+  async markAsDone(item : ItemModel){
    item.isCompleted = true;
    await this.dataService.putItem(item,item.id);
-   this.items$ = this.dataService.getItems()
+   this.items$ = this.dataService.getItemsById(item.listId);
   }
 
   // this.dataService.getItemsById(listId)

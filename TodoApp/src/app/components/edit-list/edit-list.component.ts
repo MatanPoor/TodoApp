@@ -15,7 +15,7 @@ import { wordsValidator } from 'src/app/core/validations/general-validators';
 export class EditListComponent implements OnInit {
   form!: FormGroup;
   colors: string[] = ['','red','green','blue','brown','magenta','navy','black']
-  icons: string [] = ['home','call','build','access_time','computer']
+  icons: string [] = ['home','call','build','access_time','shopping_cart','computer']
   currentColor: string = '';
   currentIcon: string = '';
   initialList: ListModel = {"id" : 0,"caption":''  ,"description" : ''  ,"color" : '', "icon" : '' }
@@ -69,7 +69,7 @@ export class EditListComponent implements OnInit {
         }
 
         //new list==> -1
-        if(listId=== -1)
+        if(listId === -1)
         {
           await this.dataService.postList(newList).then(data=>console.log(data));
         }

@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataService {
-  readonly _url : string = "http://localhost:3000"
+  readonly _url : string = "http://localhost:5000"
 
   constructor(private httpClient:HttpClient) { }
 
@@ -24,8 +24,18 @@ export class DataService {
   }
 
   getItemsById(listId : number) : Promise<ItemModel[]>{
-    let url = `${this._url}/items?listId=${listId}`;
+    let url = `${this._url}/items/${listId}`;
     return this.httpClient.get<ItemModel[]>(url).toPromise();
+  }
+
+  getLists(): Promise<ListModel[]>{
+    let url = `${this._url}/lists`;
+    return this.httpClient.get<ListModel[]>(url).toPromise();
+  }
+ 
+  getListById(id : number) : Promise<ListModel>{
+    let url = `${this._url}/lists/${id}`;
+    return this.httpClient.get<ListModel>(url).toPromise();
   }
   postItem(item:ItemModel): Promise<ItemModel>{
     let url = `${this._url}/items`;
@@ -34,10 +44,33 @@ export class DataService {
     }).toPromise();
   }
   putItem(item:ItemModel ,itemId:number): Promise<ItemModel>{
-    let url = `${this._url}/items/${itemId}`;
+    let url = `${this._url}/items`;
      return this.httpClient.put<ItemModel>(url,item, {
       headers: new HttpHeaders({'Content-Type': 'application/json',}),
     }).toPromise();
+  }
+
+
+
+  putList(list:ListModel,listId:number ): Promise<ListModel>{
+    let url = `${this._url}/lists`;
+     return this.httpClient.put<ListModel>(url, list, {
+      headers: new HttpHeaders({'Content-Type': 'application/json',}),
+    }).toPromise();
+  }
+  
+  async deleteList(list:ListModel,listId:number){
+    let urlItemsStr = `${this._url}/items/${listId}`;
+    let urlItems = await this.httpClient.get<ItemModel[]>(urlItemsStr).toPromise();
+
+
+    let urlLists = `${this._url}/lists/${listId}`;
+    
+    for await (const item of urlItems) {
+      let url = `${this._url}/items/${item.id}`;
+      await this.httpClient.delete<ItemModel>(url).toPromise();
+    }
+    return this.httpClient.delete<ListModel>(urlLists).toPromise();
   }
 
   postList(list:ListModel): Promise<ListModel>{
@@ -47,34 +80,6 @@ export class DataService {
     }).toPromise();
   }
 
-
-  putList(list:ListModel,listId:number ): Promise<ListModel>{
-    let url = `${this._url}/lists/${listId}`;
-     return this.httpClient.put<ListModel>(url, list, {
-      headers: new HttpHeaders({'Content-Type': 'application/json',}),
-    }).toPromise();
-  }
-  
-  async deleteList(list:ListModel,listId:number){
-    let urlLists = `${this._url}/lists/${listId}`;
-    let urlItemsStr = `${this._url}/Items?listId=${listId}`;
-    let urlItems = await this.httpClient.get<ItemModel[]>(urlItemsStr).toPromise();
-    for await (const item of urlItems) {
-      let url = `${this._url}/Items/${item.id}`;
-      await this.httpClient.delete<ItemModel>(url).toPromise();
-    }
-    return this.httpClient.delete<ListModel>(urlLists).toPromise();
-  }
-
-  getLists(): Promise<ListModel[]>{
-    let url = `${this._url}/lists`;
-    return this.httpClient.get<ListModel[]>(url).toPromise();
-  }
-  getListById(id : number) : Promise<ListModel>{
-    let url = `${this._url}/lists/${id}`;
-    return this.httpClient.get<ListModel>(url).toPromise();
-  }
- 
   countrLists(): Promise<number>{
     let url = `${this._url}/lists`;
     return this.httpClient.get<ListModel[]>(url).pipe(map(l => l.length)).toPromise();
