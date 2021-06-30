@@ -27,7 +27,7 @@ export class ItemsComponent implements OnInit {
    }
 
    async checkingItemsEmpty() {
-    this.countItem$ = this.dataService.countrTodoItems()
+    this.countItem$ = this.dataService.countrActiveItems()
     if(await this.countItem$ === 0){
       this.isItemsEmpty = true;
     }

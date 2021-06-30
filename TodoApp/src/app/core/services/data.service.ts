@@ -57,7 +57,7 @@ export class DataService {
     }).toPromise();
   }
   
-  async deleteList(list:ListModel,listId:number){
+  async deleteList(listId:number){
     let urlItemsStr = `${this._url}/items/${listId}`;
     let urlItems = await this.httpClient.get<ItemModel[]>(urlItemsStr).toPromise();
 

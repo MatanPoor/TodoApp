@@ -53,7 +53,7 @@ export class ListDetailsComponent implements OnInit {
 
   async deleteList(listmodel: ListModel) {
     let listId = Number(this.activatedRouter.snapshot.params['id']);
-    await this.dataService.deleteList(listmodel , listId);
+    await this.dataService.deleteList(listId);
     this.router.navigate(["home"]);
   }
 
